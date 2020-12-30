@@ -14,6 +14,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
+//        auth:api is coming from config auth.php jwt line
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
