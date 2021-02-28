@@ -104,4 +104,8 @@ class AuthController extends Controller
             JSON_UNESCAPED_UNICODE
         );
     }
+
+    public function rateMe(Request $request){
+        return "hello";
+    }
 }
