@@ -106,6 +106,12 @@ class AuthController extends Controller
     }
 
     public function rateMe(Request $request){
-        return "hello";
+        $user = auth()->user();
+        $user->happy = $request->happy;
+        $user->rating = $request->rating;
+       if( $user->save())
+          return "success";
+       else
+           return "failed";
     }
 }
