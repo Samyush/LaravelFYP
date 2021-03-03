@@ -17,8 +17,8 @@ class YearController extends Controller
     {
         //
         //$years = new Year();
-
-        $years = DB::table('years')->get();
+        $years = Year::all();
+//        $years = DB::table('years')->get();
         return $years;
     }
 
@@ -59,6 +59,7 @@ class YearController extends Controller
     public function show(Year $year)
     {
         //
+        return "hello";
     }
 
     /**

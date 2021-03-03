@@ -16,8 +16,13 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
+
+//    public function years(){
+//    return   $this->belongsTo(Year::class, 'user_year');
+//    }
+
     protected $fillable = [
-        'name', 'email', 'password', 'happy', 'rating',
+        'name', 'email', 'password', 'happy', 'rating', 'year_id'
     ];
 
     /**
