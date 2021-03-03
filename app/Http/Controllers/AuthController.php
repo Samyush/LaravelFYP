@@ -25,6 +25,7 @@ class AuthController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->year_id = $request->year_id;
         $user->password = bcrypt($request->password);
         $user->save();
 
@@ -110,8 +111,13 @@ class AuthController extends Controller
         $user->happy = $request->happy;
         $user->rating = $request->rating;
        if( $user->save())
-          return "success";
+           return response()->json([
+               'status' => 'ok', 'data' => $user
+           ], 200);
        else
-           return "failed";
+           return response()->json([
+               'status' => 'unknown_error',
+               'message' => 'Some Thing not Working.'
+           ], 500);
     }
 }

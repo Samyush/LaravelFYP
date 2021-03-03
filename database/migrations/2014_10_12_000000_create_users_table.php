@@ -13,6 +13,12 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::create('years', function (Blueprint $table) {
+            $table->id();
+            $table->string('year')->unique();
+            $table->timestamps();
+        });
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -21,6 +27,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('happy')->nullable();
             $table->integer('rating')->nullable();
+            $table->unsignedBigInteger('year_id')->nullable();
+            $table->foreign('year_id')->references('id')->on('years');
             // $table->rememberToken();
             $table->timestamps();
         });
