@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Route;
 // estas rutas se pueden acceder sin proveer de un token válido.
 Route::post('/login', 'AuthController@login');
 Route::post('/register', 'AuthController@register');
+Route::get('/uploadXml', 'AuthController@uploadXml');
+Route::post('/delete', 'AuthController@destroy');
+
+
 Route::resource('year', 'YearController');
 // estas rutas requiren de un token válido para poder accederse.
 Route::group(['middleware' => 'api'], function () {
