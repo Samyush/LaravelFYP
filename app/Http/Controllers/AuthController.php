@@ -25,7 +25,7 @@ class AuthController extends Controller
         return "hello world";
     }
 
-    public function register(Request $request)
+    public function register(Request $request): \Illuminate\Http\JsonResponse
     {
         $user = new User();
         $user->name = $request->name;
@@ -46,7 +46,7 @@ class AuthController extends Controller
 
 
 
-    public function login(Request $request)
+    public function login(Request $request): \Illuminate\Http\JsonResponse
     {
 
         $input = $request->only('email', 'password');
