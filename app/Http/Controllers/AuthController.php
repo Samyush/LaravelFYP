@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterAuthRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -15,12 +16,16 @@ class AuthController extends Controller
     public function __construct()
     {
 //        auth:api is coming from config auth.php jwt line
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'uploadXml', 'destroy']]);
     }
 
-    public $loginAfterSignUp = true;
+    public bool $loginAfterSignUp = true;
 
-    public function register(Request $request)
+    public function uploadXml(Request $request){
+        return "hello world";
+    }
+
+    public function register(Request $request): \Illuminate\Http\JsonResponse
     {
         $user = new User();
         $user->name = $request->name;
@@ -41,7 +46,7 @@ class AuthController extends Controller
 
 
 
-    public function login(Request $request)
+    public function login(Request $request): \Illuminate\Http\JsonResponse
     {
 
         $input = $request->only('email', 'password');
@@ -62,11 +67,14 @@ class AuthController extends Controller
 
 
 
-    public function logout(Request $request)
+    public function logout(Request $request): \Illuminate\Http\JsonResponse
     {
-        $this->validate($request, [
-            'token' => 'required'
-        ]);
+        try {
+            $this->validate($request, [
+                'token' => 'required'
+            ]);
+        } catch (ValidationException $e) {
+        }
 
         try {
             JWTAuth::invalidate($request->token);
@@ -85,14 +93,14 @@ class AuthController extends Controller
 
 
 
-    public function getAuthUser(Request $request)
+    public function getAuthUser(Request $request): \Illuminate\Http\JsonResponse
     {
         $user = auth()->user();
         return response()->json(['user' => $user]);
     }
 
 
-    protected function jsonResponse($data, $code = 200)
+    protected function jsonResponse($data, $code = 200): \Illuminate\Http\JsonResponse
     {
 
         return response()->json(
@@ -106,7 +114,8 @@ class AuthController extends Controller
         );
     }
 
-    public function rateMe(Request $request){
+    public function rateMe(Request $request): \Illuminate\Http\JsonResponse
+    {
         $user = auth()->user();
         $user->happy = $request->happy;
         $user->rating = $request->rating;
@@ -119,5 +128,15 @@ class AuthController extends Controller
                'status' => 'unknown_error',
                'message' => 'Some Thing not Working.'
            ], 500);
+    }
+
+    public function destroy(): \Illuminate\Http\JsonResponse
+    {
+        //
+        User::truncate();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'party',
+        ], 200);
     }
 }
