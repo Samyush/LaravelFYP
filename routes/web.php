@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/try', 'PagesController@index'); // localhost:8000/
+Route::post('/uploadFile', 'PagesController@uploadFile');
