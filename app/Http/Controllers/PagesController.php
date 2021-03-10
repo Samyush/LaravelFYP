@@ -58,10 +58,10 @@ class PagesController extends Controller
                         $num = count($filedata );
 
                         // Skip first row (Remove below comment if you want to skip the first row)
-                        /*if($i == 0){
+                        if($i == 0){
                            $i++;
                            continue;
-                        }*/
+                        }
                         for ($c=0; $c < $num; $c++) {
                             $importData_arr[$i][] = $filedata [$c];
                         }
@@ -76,7 +76,7 @@ class PagesController extends Controller
                             "name"=>$importData[0],
                             "email"=>$importData[1],
                             "password"=> bcrypt($importData[2]),
-//                            "year_id"=>$importData[4]
+                            "year_id"=>$importData[3],
                         );
                         Page::insertData($insertData);
 
