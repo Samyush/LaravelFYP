@@ -21,9 +21,6 @@ class AuthController extends Controller
 
     public bool $loginAfterSignUp = true;
 
-    public function uploadXml(Request $request){
-        return "hello world";
-    }
 
     public function register(Request $request): \Illuminate\Http\JsonResponse
     {

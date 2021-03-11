@@ -20,7 +20,7 @@
                     <label class="login-field-icon fui-lock" for="login-pass"></label>
                 </div>
 
-                <a class="btn btn-primary btn-large btn-block" href="admin/adminControl.blade.php">login</a>
+                <a class="btn btn-primary btn-large btn-block"  href='/uploadFilePage'>login</a>
                 <a class="login-link" href="mailto:samyush@samyush.com.np?subject=Forgot Password">Forgot password?</a>
             </div>
         </div>
