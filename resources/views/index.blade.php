@@ -15,6 +15,19 @@
     {{ csrf_field() }}
     <input type='file' name='file' >
     <input type='submit' name='submit' value='Import' style="background-color: #F23D4F">
+
 </form>
+
+    <form method="get" action="/allData" enctype='multipart/form-data'>
+        <input type='submit' name='submit' value='See All Data' style="background-color: #F1ED70">
+
+    </form>
+
+    <form method="post" action="/api/delete" enctype='multipart/form-data'>
+{{--        {{ csrf_field() }}--}}
+        <input type='submit' name='submit' value='Delete All Data' style="background-color: #F23D4F">
+    </form>
+
+
 
 </div>

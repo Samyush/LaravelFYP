@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <div>
-        hello
+    <div class="login">
+        <h1>This is Working</h1>
     </div>
