@@ -212,9 +212,12 @@
 
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Academy Of Culinary Arts') }}
-        </a>
+{{--        <a class="navbar-brand" href="{{ url('/') }}">--}}
+{{--            {{ config('app.name', 'Academy Of Culinary Arts') }}--}}
+{{--        </a>--}}
+       <div>
+        <a class="navbar-brand" href="{{url('/')}}">Final Year Project, ACA 18030828</a>
+       </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

@@ -13,6 +13,10 @@ class PagesController extends Controller
         return view('index');
     }
 
+//    public function allData(){
+//    return view('admin.adminControl');
+//    }
+
     public function uploadFile(Request $request): \Illuminate\Http\RedirectResponse
     {
 

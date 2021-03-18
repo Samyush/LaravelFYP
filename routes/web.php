@@ -20,6 +20,16 @@ Route::get('/', function () {
 Route::get('/uploadFilePage', 'PagesController@index'); // localhost:8000/
 Route::post('/uploadFile', 'PagesController@uploadFile');
 
-Route::get('/allData', function (){
-   return view('admin.adminControl');
+//Route::get('/allData', function (){
+//   return view('admin.adminControl');
+//});
+Route::get('/allData', 'PagesController@allData');
+
+//CRUD operation for admin
+
+Route::group(['middleware' => ['web']], function() {
+    Route::resource('post','AdminCRUDController');
+    Route::POST('addPost','AdminCRUDController@addPost');
+    Route::POST('editPost','AdminCRUDController@editPost');
+    Route::POST('deletePost','AdminCRUDController@deletePost');
 });

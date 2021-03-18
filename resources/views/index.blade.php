@@ -18,7 +18,7 @@
 
 </form>
 
-    <form method="get" action="/allData" enctype='multipart/form-data'>
+    <form method="get" action="/post" enctype='multipart/form-data'>
         <input type='submit' name='submit' value='See All Data' style="background-color: #F1ED70">
 
     </form>
