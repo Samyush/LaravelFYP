@@ -27,7 +27,7 @@
         }
         body {
             font-family: Arial;
-            background-color: #F0A9AC;
+            background-color: #181818;
             padding: 50px;
         }
         .login {
@@ -210,8 +210,8 @@
 <body>
 <header>
 
-
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-default navbar-ststic-top">
+{{--    <nav class="navbar navbar-expand-md navbar-dark fixed-top ">--}}
 {{--        <a class="navbar-brand" href="{{ url('/') }}">--}}
 {{--            {{ config('app.name', 'Academy Of Culinary Arts') }}--}}
 {{--        </a>--}}

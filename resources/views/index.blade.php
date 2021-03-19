@@ -14,18 +14,20 @@
 <form method='post' action='/uploadFile' enctype='multipart/form-data' >
     {{ csrf_field() }}
     <input type='file' name='file' >
-    <input type='submit' name='submit' value='Import' style="background-color: #F23D4F">
+    <input type='submit' name='submit' value='Import' style="background-color: #F4F590">
 
 </form>
 
     <form method="get" action="/post" enctype='multipart/form-data'>
-        <input type='submit' name='submit' value='See All Data' style="background-color: #F1ED70">
+        <input type='submit' name='submit' value='See All Data' style="background-color: #E1EDB0">
 
     </form>
 
     <form method="post" action="/api/delete" enctype='multipart/form-data'>
 {{--        {{ csrf_field() }}--}}
-        <input type='submit' name='submit' value='Delete All Data' style="background-color: #F23D4F">
+        <i class="glyphicon glyphicon-plus"></i>
+
+        <input type='submit' name='submit' value='Delete All Data' style="background-color: #F0585B">
     </form>
 
 
