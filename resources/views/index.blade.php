@@ -14,7 +14,7 @@
 <form method='post' action='/uploadFile' enctype='multipart/form-data' >
     {{ csrf_field() }}
     <input type='file' name='file' >
-    <input type='submit' name='submit' value='Import' style="background-color: #F4F590">
+    <input type='submit' name='submit' value='Import' style="background-color: #B0CE5F">
 
 </form>
 
