@@ -4,7 +4,7 @@
 <div class="login">
 <!-- Message -->
 @if(Session::has('message'))
-    <p >{{ Session::get('message') }}</p>
+    <p style="color: crimson">{{ Session::get('message') }}</p>
 @endif
 
 <!-- Form -->

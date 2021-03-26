@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use mysql_xdevapi\Exception;
 use Session;
 use Illuminate\Http\Request;
 use App\Page;
@@ -13,89 +14,100 @@ class PagesController extends Controller
         return view('index');
     }
 
+    public function uploadFail(): \Illuminate\Http\RedirectResponse
+    {
+        return redirect()->back()->with('alert', 'Please select a CSV file');
+
+    }
 //    public function allData(){
 //    return view('admin.adminControl');
 //    }
 
     public function uploadFile(Request $request): \Illuminate\Http\RedirectResponse
     {
+        try {
+            if ($request->input('submit') != null ){
 
-        if ($request->input('submit') != null ){
+                $file = $request->file('file');
 
-            $file = $request->file('file');
+                // File Details
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $tempPath = $file->getRealPath();
+                $fileSize = $file->getSize();
+                $mimeType = $file->getMimeType();
 
-            // File Details
-            $filename = $file->getClientOriginalName();
-            $extension = $file->getClientOriginalExtension();
-            $tempPath = $file->getRealPath();
-            $fileSize = $file->getSize();
-            $mimeType = $file->getMimeType();
+                // Valid File Extensions
+                $valid_extension = array("csv");
 
-            // Valid File Extensions
-            $valid_extension = array("csv");
+                // 2MB in Bytes
+                $maxFileSize = 2097152;
 
-            // 2MB in Bytes
-            $maxFileSize = 2097152;
+                // Check file extension
+                if(in_array(strtolower($extension),$valid_extension)){
 
-            // Check file extension
-            if(in_array(strtolower($extension),$valid_extension)){
+                    // Check file size
+                    if($fileSize <= $maxFileSize){
 
-                // Check file size
-                if($fileSize <= $maxFileSize){
+                        // File upload location
+                        $location = 'uploads';
 
-                    // File upload location
-                    $location = 'uploads';
+                        // Upload file
+                        $file->move($location,$filename);
 
-                    // Upload file
-                    $file->move($location,$filename);
+                        // Import CSV to Database
+                        $filepath = public_path($location."/".$filename);
 
-                    // Import CSV to Database
-                    $filepath = public_path($location."/".$filename);
+                        // Reading file
+                        $file = fopen($filepath,"r");
 
-                    // Reading file
-                    $file = fopen($filepath,"r");
+                        $importData_arr = array();
+                        $i = 0;
 
-                    $importData_arr = array();
-                    $i = 0;
+                        while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
+                            $num = count($filedata );
 
-                    while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
-                        $num = count($filedata );
-
-                        // Skip first row (Remove below comment if you want to skip the first row)
-                        if($i == 0){
-                           $i++;
-                           continue;
+                            // Skip first row (Remove below comment if you want to skip the first row)
+                            if($i == 0){
+                                $i++;
+                                continue;
+                            }
+                            for ($c=0; $c < $num; $c++) {
+                                $importData_arr[$i][] = $filedata [$c];
+                            }
+                            $i++;
                         }
-                        for ($c=0; $c < $num; $c++) {
-                            $importData_arr[$i][] = $filedata [$c];
+                        fclose($file);
+
+                        // Insert to MySQL database
+                        foreach($importData_arr as $importData){
+
+                            $insertData = array(
+                                "name"=>$importData[0],
+                                "email"=>$importData[1],
+                                "password"=> bcrypt($importData[2]),
+                                "year_id"=>$importData[3],
+                            );
+                            Page::insertData($insertData);
+
                         }
-                        $i++;
-                    }
-                    fclose($file);
 
-                    // Insert to MySQL database
-                    foreach($importData_arr as $importData){
-
-                        $insertData = array(
-                            "name"=>$importData[0],
-                            "email"=>$importData[1],
-                            "password"=> bcrypt($importData[2]),
-                            "year_id"=>$importData[3],
-                        );
-                        Page::insertData($insertData);
-
+                        Session::flash('message','Import Successful.');
+                    }else{
+                        Session::flash('message','File too large. File must be less than 2MB.');
                     }
 
-                    Session::flash('message','Import Successful.');
                 }else{
-                    Session::flash('message','File too large. File must be less than 2MB.');
+                    Session::flash('message','Invalid File Extension.');
                 }
 
-            }else{
-                Session::flash('message','Invalid File Extension.');
             }
+        } catch (\Throwable $e){
+            Session::flash('message','Please select a file.');
 
-        }
+//            return redirect()->action('PagesController@uploadFail');
+    }
+
 
         // Redirect to index
         return redirect()->action('PagesController@index');

@@ -2,24 +2,6 @@
 
 @section('content')
 
-{{--    <script>--}}
-{{--        var msg = '{{Session::get('alert')}}';--}}
-{{--        var exist = '{{Session::has('alert')}}';--}}
-{{--        if(exist){--}}
-{{--            alert(msg);--}}
-{{--        }--}}
-{{--    </script>--}}
-
-
-{{--is partially working below one--}}
-{{--    @if(Session::has('message'))--}}
-{{--        <p >{{ Session::get('message') }}</p>--}}
-{{--    @endif--}}
-
-
-
-
-
     <div class="login">
     <form method="post" action="/webLogin">
         <div class="login-screen">
@@ -57,13 +39,7 @@
         </div>
     @endif
 
-        @if(Session::has('jsAlert'))
 
-            <script type="text/javascript" >
-                alert({{ session()->get('jsAlert') }});
-            </script>
-
-        @endif
     </div>
 
 

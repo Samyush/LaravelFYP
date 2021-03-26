@@ -160,5 +160,13 @@
         $('.modal-title').text('Show Post');
     });
 </script>
+
+<script>
+    const msg = '{{Session::get('alert')}}';
+    const exist = '{{Session::has('alert')}}';
+    if(exist){
+        alert(msg);
+    }
+</script>
 </body>
 </html>

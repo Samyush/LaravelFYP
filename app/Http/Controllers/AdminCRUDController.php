@@ -26,7 +26,7 @@ class AdminCRUDController extends Controller
         else
 //            Session::flash('message','Invalid Credentials.');
 
-        return redirect()->back()->with('jsAlert', 'wrong credentials');
+        return redirect()->back()->with('alert', 'wrong credentials');
 
 
 //            return \view('welcome');
