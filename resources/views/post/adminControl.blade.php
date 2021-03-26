@@ -39,7 +39,18 @@
 
                         {{--                        this here shows password in encrypted form but is removed as per told by supervisor--}}
 {{--                        <td>{{ $value->password}}</td>--}}
-                        <td>{{ $value->happy }}</td>
+                        @if($value->happy == 1)
+                        <td style="color: #31B0D5"> Happy </td>
+                        @elseif($value->happy == '0')
+                            <td style="color: #C9302C"> Not Happy </td>
+
+{{--                            <td style="color: #C9302C"> Not Happy </td>--}}
+                        @else
+                            <td style="color: #B7B7B7"> Not Stated </td>
+
+                            {{--                            <td> {{$value->happy}} </td>--}}
+                        @endif
+
                         <td>{{ $value->rating }}</td>
                         <td>{{ $value->year_id }}</td>
 
