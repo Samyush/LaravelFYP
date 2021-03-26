@@ -20,10 +20,10 @@ Route::get('/', function () {
 Route::get('/uploadFilePage', 'PagesController@index'); // localhost:8000/
 Route::post('/uploadFile', 'PagesController@uploadFile');
 
-//Route::get('/allData', function (){
-//   return view('admin.adminControl');
-//});
+
 Route::get('/allData', 'PagesController@allData');
+Route::post('/webLogin', 'AdminCRUDController@webLogin');
+
 
 //CRUD operation for admin
 

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\AdminView;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Validator;
 use Response;
 use Illuminate\Support\Facades\Input;
@@ -15,6 +17,21 @@ class AdminCRUDController extends Controller
     {
         $post = AdminView::paginate(4);
         return view('post.adminControl', compact('post'));
+    }
+
+    public function webLogin(Request $request){
+        if($request->username == 'samyush' && $request->password == '123123'){
+            return \view('index');
+        }
+        else
+//            Session::flash('message','Invalid Credentials.');
+
+        return redirect()->back()->with('jsAlert', 'wrong credentials');
+
+
+//            return \view('welcome');
+//            return redirect()->back()->with('jsAlert', 'wrong credentials');
+
     }
 
     public function addPost(Request $request)
