@@ -23,7 +23,7 @@
 
 {{--                @if ($input->username == "samyush" && $input->password == '123123')--}}
 {{--               error one <a class="btn btn-primary btn-large btn-block"  type="submit">login</a>--}}
-                <input type="submit"/>
+                <input type="submit" style="background-color: #EBA54C"/>
 {{--                <a class="btn btn-primary btn-large btn-block"  href='/uploadFilePage'>login</a>--}}
                 <a class="login-link" href="mailto:samyush@samyush.com.np?subject=Forgot Password">Forgot password?</a>
             </div>

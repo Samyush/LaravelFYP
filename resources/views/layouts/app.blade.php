@@ -17,6 +17,8 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
+
 <body>
 <nav class="navbar navbar-default navbar-ststic-top">
     <div class="container">
@@ -89,6 +91,8 @@
         $('#t').val($(this).data('name'));
         $('#b').val($(this).data('email'));
         $('#p').val($(this).data('password'));
+        $('#y').val($(this).data('year_id'));
+
         $('#myModal').modal('show');
     });
 
@@ -102,6 +106,7 @@
                 'name': $('#t').val(),
                 'email': $('#b').val(),
                 'password': $('#p').val(),
+                'year_id': $('#y').val(),
 
             },
             success: function(data) {
@@ -113,6 +118,7 @@
                     "<td>" + data.password + "</td>"+
                     "<td>" + data.happy + "</td>"+
                     "<td>" + data.rating + "</td>"+
+                    "<td>" + data.year_id + "</td>"+
                     "<td><button class='show-modal btn btn-info btn-sm' data-id='" + data.id + "' data-title='" + data.title + "' data-body='" + data.body + "'><span class='fa fa-eye'></span></button> <button class='edit-modal btn btn-warning btn-sm' data-id='" + data.id + "' data-title='" + data.title + "' data-body='" + data.body + "'><span class='glyphicon glyphicon-pencil'></span></button> <button class='delete-modal btn btn-danger btn-sm' data-id='" + data.id + "' data-title='" + data.title + "' data-body='" + data.body + "'><span class='glyphicon glyphicon-trash'></span></button></td>"+
                     "</tr>");
             }

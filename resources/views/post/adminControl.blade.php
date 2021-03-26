@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <h1>Academy of Culinary Arts Student Data CRUD Ajax</h1>
+            <h1>Academy of Culinary Arts Student Data (CRUD => Ajax)</h1>
         </div>
     </div>
 
@@ -17,12 +17,15 @@
                     <th>Password</th>
                     <th>Happy</th>
                     <th>Ratings</th>
-{{--                    <th>Create At</th>--}}
+                    <th>Year</th>
+                    {{--                    <th>Create At</th>--}}
                     <th class="text-center" width="150px">
                         Edit Panel
-                        <a href="#" class="create-modal btn btn-success btn-sm">
-                            <i class="glyphicon glyphicon-plus"></i>
-                        </a>
+
+{{--                        dont know how the button functions of below--}}
+{{--                        <a href="#" class="create-modal btn btn-success btn-sm">--}}
+{{--                            <i class="glyphicon glyphicon-plus"></i>--}}
+{{--                        </a>--}}
                     </th>
                 </tr>
                 {{ csrf_field() }}
@@ -32,11 +35,15 @@
                         <td>{{ $no++ }}</td>
                         <td>{{ $value->name }}</td>
                         <td>{{ $value->email }}</td>
-                        <td>{{ $value->password}}</td>
+                        <td>secure</td>
+
+                        {{--                        this here shows password in encrypted form but is removed as per told by supervisor--}}
+{{--                        <td>{{ $value->password}}</td>--}}
                         <td>{{ $value->happy }}</td>
                         <td>{{ $value->rating }}</td>
+                        <td>{{ $value->year_id }}</td>
 
-{{--                        <td>{{ $value->created_at }}</td>--}}
+                        {{--                        <td>{{ $value->created_at }}</td>--}}
                         <td>
                             <a href="#" class="show-modal btn btn-info btn-sm" data-id="{{$value->id}}" data-title="{{$value->name}}" data-body="{{$value->email}}">
                                 <i class="fa fa-eye"></i>
@@ -162,6 +169,14 @@
                             <label class="control-label col-sm-2"for="body">Password</label>
                             <div class="col-sm-10">
                                 <textarea type="name" class="form-control" id="p"></textarea>
+                            </div>
+                        </div>
+{{--                        for year--}}
+{{--                        other functions are to be in layouts->app.blade.php inside scripts--}}
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"for="body">Year</label>
+                            <div class="col-sm-10">
+                                <textarea type="name" class="form-control" id="y"></textarea>
                             </div>
                         </div>
                     </form>
