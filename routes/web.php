@@ -22,7 +22,7 @@ Route::post('/uploadFile', 'PagesController@uploadFile');
 Route::get('/uploadFail', 'PagesController@uploadFail');
 
 
-Route::get('/allData', 'PagesController@allData');
+//Route::get('/allData', 'PagesController@allData');
 Route::post('/webLogin', 'AdminCRUDController@webLogin');
 
 

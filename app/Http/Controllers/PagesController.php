@@ -6,12 +6,19 @@ use mysql_xdevapi\Exception;
 use Session;
 use Illuminate\Http\Request;
 use App\Page;
+use App\Http\Controllers\AdminCRUDController;
 
 class PagesController extends Controller
 {
+
     //
     public function index(){
-        return view('index');
+
+//        $obj = new AdminCRUDController();
+
+//        if ($obj->webLogin == true) {
+            return view('index');
+//        }else   return view('noHack');
     }
 
     public function uploadFail(): \Illuminate\Http\RedirectResponse

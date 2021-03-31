@@ -13,6 +13,9 @@ use App\http\Requests;
 
 class AdminCRUDController extends Controller
 {
+
+    public bool $webLogin = false;
+
     public function index()
     {
         $post = AdminView::paginate(4);
@@ -21,6 +24,8 @@ class AdminCRUDController extends Controller
 
     public function webLogin(Request $request){
         if($request->username == 'samyush' && $request->password == '123123'){
+            $this->webLogin = true;
+//            echo $this->webLogin;
             return \view('index');
         }
         else
