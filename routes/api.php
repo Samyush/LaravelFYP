@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-// estas rutas se pueden acceder sin proveer de un token válido.
+// the preferable routes as per requirements.
 Route::post('/login', 'AuthController@login');
 Route::post('/register', 'AuthController@register');
 Route::get('/uploadXml', 'AuthController@uploadXml');
@@ -13,7 +13,7 @@ Route::post('/delete', 'AuthController@destroy');
 
 
 Route::resource('year', 'YearController');
-// estas rutas requiren de un token válido para poder accederse.
+// this section is for when we use jwt checking in later purpose.
 Route::group(['middleware' => 'api'], function () {
     Route::post('/logout', 'AuthController@logout');
     Route::get('/currentUsr', 'AuthController@getAuthUser');
