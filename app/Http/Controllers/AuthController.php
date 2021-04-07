@@ -127,13 +127,14 @@ class AuthController extends Controller
            ], 500);
     }
 
-    public function destroy(): \Illuminate\Http\JsonResponse
+    public function destroy()
     {
         //
         User::truncate();
-        return response()->json([
-            'status' => 'success',
-            'message' => 'party',
-        ], 200);
+        return view('noHack');
+//        return response()->json([
+//            'status' => 'success',
+//            'message' => 'party',
+//        ], 200);
     }
 }
