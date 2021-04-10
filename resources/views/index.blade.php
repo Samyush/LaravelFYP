@@ -29,7 +29,4 @@
 
         <input type='submit' name='submit' value='Delete All Data' style="background-color: #F0585B">
     </form>
-
-
-
 </div>
