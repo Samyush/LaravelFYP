@@ -52,7 +52,7 @@ class AuthController extends Controller
         if (!$jwt_token = JWTAuth::attempt($input)) {
             return response()->json([
                 'status' => 'invalid_credentials',
-                'message' => 'Correo o contraseña no válidos.',
+                'message' => 'Invalid email or password.',
             ], 401);
         }
         return response()->json([
@@ -77,12 +77,12 @@ class AuthController extends Controller
             JWTAuth::invalidate($request->token);
             return response()->json([
                 'status' => 'ok',
-                'message' => 'Cierre de sesión exitoso.'
+                'message' => 'Successful logout.'
             ]);
         } catch (JWTException $exception) {
             return response()->json([
                 'status' => 'unknown_error',
-                'message' => 'Al usuario no se le pudo cerrar la sesión.'
+                'message' => 'The user could not be logged out.'
             ], 500);
         }
     }
