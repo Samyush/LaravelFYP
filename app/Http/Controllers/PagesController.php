@@ -110,7 +110,7 @@ class PagesController extends Controller
 
             }
         } catch (\Throwable $e){
-            Session::flash('message','Please select a file.');
+            Session::flash('message','Please select a file or file has a duplicate data.');
 
 //            return redirect()->action('PagesController@uploadFail');
     }
