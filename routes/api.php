@@ -10,6 +10,9 @@ Route::post('/login', 'AuthController@login');
 Route::post('/register', 'AuthController@register');
 Route::get('/uploadXml', 'AuthController@uploadXml');
 Route::post('/delete', 'AuthController@destroy');
+Route::get('/try', function (){
+    return "hello";
+});
 
 
 Route::resource('year', 'YearController');
